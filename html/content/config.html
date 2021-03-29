@@ -1,0 +1,493 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Environments &#8212; ML4Floods</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Full Data Ingest" href="prep/full_data_ingest.html" />
+    <link rel="prev" title="Introduction to MC4Floods" href="intro/introduction.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/ml4cc_logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">ML4Floods</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro/introduction.html">
+   Introduction to MC4Floods
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Install
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Environments
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Data prep
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="prep/full_data_ingest.html">
+   Full Data Ingest
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prep/geographic_index_demo.html">
+   Geographic index demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prep/gt_masks_generation.html">
+   Ground Truth
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prep/demo_pytorch_transforms.html">
+   PreProcessing Demonstration
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  MLOps
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ml4ops/HOWTO_Train_models.html">
+   Train models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ml4ops/HOWTO_performance_metrics_workflow.html">
+   Model Metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ml4ops/HOWTO_Run_Inference_on_new_data.html">
+   Run inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ml4ops/HOWTO_Run_Inference_multioutput_binary.html">
+   Cloud removal inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ml4ops/HOWTO_Calculate_uncertainty_maps.html">
+   Probabilistic neural networks
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/content/config.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Environments
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installation-instructions">
+   Installation Instructions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyterlab">
+   JupyterLab
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why">
+     Why?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-jupyterlab">
+     1 Install JupyterLab
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-some-extensions">
+     2 Install some extensions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#run-jupyterlab">
+     3 Run JupyterLab
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-your-conda-environment">
+     4 Create Your Conda Environment
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#note-other-environments">
+       Note - Other Environments
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#note-directory-to-run">
+       Note - Directory to Run
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#getting-the-root-directory">
+       Getting the Root Directory
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#demo-notebook-start">
+         Demo Notebook Start
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="environments">
+<h1>Environments<a class="headerlink" href="#environments" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>We provide environments for reproducing certain aspects of our code. There will be dedicated environments to facilitate certain bits of the pipeline and then more general environments.</p>
+</div></blockquote>
+<hr class="docutils" />
+<div class="section" id="id1">
+<h2>Environments<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> - the more general environment to install <strong>all dependencies</strong> for every aspect of the pipeline.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">environment_dataprep.yml</span></code> there are some extra environments for getting and loading data. Will be shown in specific notebooks.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jupyterlab.yml</span></code> - for setting up your own jupyterlab environment. Can be for dev or just to explore.</p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="installation-instructions">
+<h2>Installation Instructions<a class="headerlink" href="#installation-instructions" title="Permalink to this headline">¶</a></h2>
+<p>This repo uses the most updated <code class="docutils literal notranslate"><span class="pre">jax</span></code> library on github so this is absolutely essential, e.g. it uses the latest <code class="docutils literal notranslate"><span class="pre">np.interp</span></code> function which isn’t on the <code class="docutils literal notranslate"><span class="pre">pip</span></code> distribution yet. The <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file will have the most updated distribution.</p>
+<ol class="simple">
+<li><p>Clone the repository.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/spaceml-org/ml4floods/
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Install using conda.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env create -f environments/environment.yml
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>If you already have the environment installed, you can update it.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate jaxrbig
+conda env update --file environments/environment.yml
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="jupyterlab">
+<h2>JupyterLab<a class="headerlink" href="#jupyterlab" title="Permalink to this headline">¶</a></h2>
+<p>Some instructions for how to install JupyterLab on your own system. There are detailed instructions <a class="reference external" href="https://jejjohnson.github.io/research_journal/tutorials/remote_computing/vscode_jlab/">here</a> but below are the basics.</p>
+<div class="section" id="why">
+<h3>Why?<a class="headerlink" href="#why" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The paths system is a mess. It also not only affects your productivity and mental sanity.</p></li>
+<li><p>Because there are two separate paths <code class="docutils literal notranslate"><span class="pre">/home/jupyter/</span></code> and <code class="docutils literal notranslate"><span class="pre">/home/user</span></code> inevitably, people tend to call things from <code class="docutils literal notranslate"><span class="pre">/home/jupyter</span></code> that just don’t exist or vice versa. There are always artifacts in peoples code of this which causes things to break for others when they pull changes.</p></li>
+<li><p>Transferable skills. You won’t always have a <code class="docutils literal notranslate"><span class="pre">notebook</span> <span class="pre">instance</span></code> at your disposal, so you’ll be able to do this with any remote system that allows for ssh! :)</p></li>
+</ul>
+</div>
+<div class="section" id="install-jupyterlab">
+<h3>1 Install JupyterLab<a class="headerlink" href="#install-jupyterlab" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env install -f jupyterlab.yml
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-some-extensions">
+<h3>2 Install some extensions<a class="headerlink" href="#install-some-extensions" title="Permalink to this headline">¶</a></h3>
+<p>It’s nice to have and it’s worth having for later.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># activate environment</span>
+conda activate jupyterlab
+<span class="c1"># Install jupyter lab extension manager</span>
+jupyter labextension install @jupyter-widgets/jupyterlab-manager
+<span class="c1"># Enable</span>
+jupyter serverextension <span class="nb">enable</span> --py jupyterlab-manager
+</pre></div>
+</div>
+</div>
+<div class="section" id="run-jupyterlab">
+<h3>3 Run JupyterLab<a class="headerlink" href="#run-jupyterlab" title="Permalink to this headline">¶</a></h3>
+<p>You can run the jupyterlab instance through vscode</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># activate environment (if you haven&#39;t already)</span>
+conda activate jupyterlab
+<span class="c1"># or source activate jupyterlab</span>
+jupyter-lab --no-browser --port XXXX
+</pre></div>
+</div>
+<p><strong>or</strong> you can run an instance through <code class="docutils literal notranslate"><span class="pre">gcloud</span> <span class="pre">+</span> <span class="pre">ssh</span></code> via the terminal</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># sign in and have a port open</span>
+gcloud compute ssh --project XXX --zone XXXX USERNAME@VM-INSTANCE -- -L XXXX:localhost:XXXX
+<span class="c1"># start jupyterlab</span>
+conda activate jupyterlab
+jupyter-lab --no-browser --port XXXX
+</pre></div>
+</div>
+<p>Then you go to your local browser and type in: <code class="docutils literal notranslate"><span class="pre">localhost:XXXX</span></code></p>
+</div>
+<div class="section" id="create-your-conda-environment">
+<h3>4 Create Your Conda Environment<a class="headerlink" href="#create-your-conda-environment" title="Permalink to this headline">¶</a></h3>
+<p>On the front <span class="xref myst">README.md</span>, there is a common <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>.</p>
+<p><strong>Everyone should be using this and if you add a new package, you need to update this package environment so that everyone is using the same environment</strong>.</p>
+<hr class="docutils" />
+<div class="section" id="note-other-environments">
+<h4>Note - Other Environments<a class="headerlink" href="#note-other-environments" title="Permalink to this headline">¶</a></h4>
+<p>This is super important, you do not need to install jupyterlab in every conda environment you make. Just make sure that you install <code class="docutils literal notranslate"><span class="pre">ipykernel</span></code> and the general <code class="docutils literal notranslate"><span class="pre">jupyterlab</span></code> conda environment will be able to see other environments. So you’ll be able to select the python kernel for your appropriate notebook when you run it.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="note-directory-to-run">
+<h4>Note - Directory to Run<a class="headerlink" href="#note-directory-to-run" title="Permalink to this headline">¶</a></h4>
+<p>Whichever directory you run JupyterLab, it’s the same directory you’re going to see in your file explorer on the left panel of JupyterLab. I’d recommend that you run JupyterLab from the top level directory of either your home directory <code class="docutils literal notranslate"><span class="pre">/home/user/</span></code> or the top top directory <code class="docutils literal notranslate"><span class="pre">/</span></code>. That way you’ll have access to the file system on your file explorer to the left. So you simply need to navigate to that directory <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/</span></code>, run jupyterlab and you’ll be good to go.</p>
+</div>
+<div class="section" id="getting-the-root-directory">
+<h4>Getting the Root Directory<a class="headerlink" href="#getting-the-root-directory" title="Permalink to this headline">¶</a></h4>
+<p>Most of the time we want to call stuff from our source module, e.g. <code class="docutils literal notranslate"><span class="pre">/home/user/repo/</span></code>. So there is a package installed in the environment.yml that’s called pyprojroot which fixes this issue. Basically, there is a <code class="docutils literal notranslate"><span class="pre">.here</span></code> file in the top directory that marks the top level directory to our modules. And this package will spyder it’s way up through the parents until it finds it. Then we append that to our paths and now we can call functions.</p>
+<div class="section" id="demo-notebook-start">
+<h5>Demo Notebook Start<a class="headerlink" href="#demo-notebook-start" title="Permalink to this headline">¶</a></h5>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pyprojroot</span> <span class="kn">import</span> <span class="n">here</span>
+
+<span class="c1"># spyder up to find the root</span>
+<span class="n">root</span> <span class="o">=</span> <span class="n">here</span><span class="p">(</span><span class="n">project_files</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;.here&quot;</span><span class="p">])</span>
+
+<span class="c1"># append to path</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">here</span><span class="p">()))</span>
+
+</pre></div>
+</div>
+<p>In general, if you can, try to avoid hacky things like <code class="docutils literal notranslate"><span class="pre">sys.path.append(&quot;../../&quot;)</span></code> because weird things tend to happen when other people use your code. (I do this all the time btw…)</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="intro/introduction.html" title="previous page">Introduction to MC4Floods</a>
+    <a class='right-next' id="next-link" href="prep/full_data_ingest.html" title="next page">Full Data Ingest</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By spaceml<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

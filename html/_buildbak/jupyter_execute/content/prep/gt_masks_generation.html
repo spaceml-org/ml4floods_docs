@@ -1,0 +1,1058 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ground Truth &#8212; ML4Floods</title>
+    
+  <link rel="stylesheet" href="../../../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../../../index.html">
+  
+  <img src="../../../../_static/ml4cc_logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">ML4Floods</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../content/intro/introduction.html">
+   Introduction to MC4Floods
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Install
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../content/config.html">
+   Environments
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Data prep
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../content/prep/full_data_ingest.html">
+   Full Data Ingest
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../content/prep/geographic_index_demo.html">
+   Geographic index demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../content/prep/gt_masks_generation.html">
+   Ground Truth
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../content/prep/demo_pytorch_transforms.html">
+   PreProcessing Demonstration
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  MLOps
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../content/ml4ops/HOWTO_Train_models.html">
+   Train models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../content/ml4ops/HOWTO_performance_metrics_workflow.html">
+   Model Metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../content/ml4ops/HOWTO_Run_Inference_on_new_data.html">
+   Run inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../content/ml4ops/HOWTO_Run_Inference_multioutput_binary.html">
+   Cloud removal inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../content/ml4ops/HOWTO_Calculate_uncertainty_maps.html">
+   Probabilistic neural networks
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../../_sources/_buildbak/jupyter_execute/content/prep/gt_masks_generation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/_buildbak/jupyter_execute/content/prep/gt_masks_generation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#brief-description">
+   Brief Description
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tldr">
+   TLDR
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#more-information">
+   More Information
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#original-image">
+   Original Image
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#demo-plot">
+   Demo Plot
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cloud-masks">
+   Cloud Masks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#last-channel-cloud-probabilities">
+     Last Channel Cloud Probabilities
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-based">
+     Model-Based
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#figure">
+       Figure
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#water-masks">
+   Water Masks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#permanent-water">
+     Permanent Water
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#flood-events">
+     Flood Events
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#plot-floodmaps-on-permanent-water">
+       Plot - FloodMaps On Permanent Water
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#figure-floodmaps-on-s2-image">
+       Figure - FloodMaps On S2 Image
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Ground Truth
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#class-problem">
+     3-Class Problem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#demo">
+     Demo
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   2-Class Problem
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#meta-data">
+     Meta Data
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="ground-truth">
+<h1>Ground Truth<a class="headerlink" href="#ground-truth" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><strong>Last Modified</strong>: 10-03-2021</p></li>
+<li><p><strong>Authors</strong>: Satyarth Praveen, J. Emmanuel Johnson, Nadia Ahmed, Nicholas Roth</p></li>
+</ul>
+<hr class="docutils" />
+<div class="section" id="brief-description">
+<h2>Brief Description<a class="headerlink" href="#brief-description" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook, we will explore some ways that we can do <em>tiling</em> that are necessary for machine learning purposes as well as visualization.  Often times we have images which are absolutely massive and we need to take bits and pieces to be ingested to other models. Obviously visualization is a different. So it does the following:</p>
+<ol class="simple">
+<li><p>We retrieve all of the information necessary</p></li>
+<li><p>We fuse them to create the ground truth ready to go!</p></li>
+</ol>
+<p>To create the ground truth necessary in the worldfloods data, we need access to water, land and clouds. So let’s show how we do this?</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="tldr">
+<h2>TLDR<a class="headerlink" href="#tldr" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Tiling is a critical component of grabbing images.</p>
+</div></blockquote>
+<blockquote>
+<div><p>It uses the WorldFloodsDatasetTiled class that internally tiles the input image and masks. Objects of this class can also be initialized with the transformations to apply transformation to the tiled samples.</p>
+</div></blockquote>
+<blockquote>
+<div><p>This is useful because it complies with the pytorch datasets that can directly be used for training models.</p>
+</div></blockquote>
+<hr class="docutils" />
+</div>
+<hr class="docutils" />
+<div class="section" id="more-information">
+<h2>More Information<a class="headerlink" href="#more-information" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://rasterio.readthedocs.io/en/latest/topics/windowed-rw.html">Tiling</a></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Path based modules to allow us to save files to our local machine</span>
+<span class="kn">from</span> <span class="nn">pyprojroot</span> <span class="kn">import</span> <span class="n">here</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">root</span> <span class="o">=</span> <span class="n">here</span><span class="p">(</span><span class="n">project_files</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;.here&quot;</span><span class="p">])</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">here</span><span class="p">()))</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">from</span> <span class="nn">rasterio</span> <span class="kn">import</span> <span class="n">plot</span> <span class="k">as</span> <span class="n">rasterioplt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">src.data</span> <span class="kn">import</span> <span class="n">create_gt</span>
+<span class="kn">from</span> <span class="nn">src.data.utils</span> <span class="kn">import</span> <span class="n">GCPPath</span><span class="p">,</span> <span class="n">read_pickle_from_gcp</span><span class="p">,</span> <span class="n">get_files_in_directory_gcp</span>
+
+<span class="c1"># PLOT Utilities</span>
+<span class="kn">from</span> <span class="nn">src.visualization.plot_utils</span> <span class="kn">import</span> <span class="n">plot_s2_rbg_image</span>
+
+<span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="original-image">
+<h2>Original Image<a class="headerlink" href="#original-image" title="Permalink to this headline">¶</a></h2>
+<p>Let’s load a demo Sentinel-2 (S2) image which will be the basis for all of our demonstrations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S2_IMG_PATH</span> <span class="o">=</span> <span class="s2">&quot;gs://ml4cc_data_lake/0_DEV/1_Staging/WorldFloods/S2/EMSR501/AOI01/EMSR501_AOI01_DEL_MONIT01_r1_v1.tif&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="demo-plot">
+<h2>Demo Plot<a class="headerlink" href="#demo-plot" title="Permalink to this headline">¶</a></h2>
+<p>We have an easy plot function to visualize the S2 image.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">src.visualization.plot_utils</span> <span class="kn">import</span> <span class="n">plot_s2_rbg_image</span>
+
+<span class="c1"># initialize figure</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">16</span><span class="p">))</span>
+
+<span class="c1"># prettyu</span>
+<span class="n">plot_s2_rbg_image</span><span class="p">(</span><span class="n">S2_IMG_PATH</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Demo Sentinel-2 Image&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../../_images/gt_masks_generation_5_0.png" src="../../../../_images/gt_masks_generation_5_0.png" />
+</div>
+</div>
+<p>This is mainly for demonstration purposes. For more advanced plotting utilities, please consult a specialized library.</p>
+<p>So now we have our image, let’s see what tools we have available to do masks.</p>
+</div>
+<div class="section" id="cloud-masks">
+<h2>Cloud Masks<a class="headerlink" href="#cloud-masks" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="last-channel-cloud-probabilities">
+<h3>Last Channel Cloud Probabilities<a class="headerlink" href="#last-channel-cloud-probabilities" title="Permalink to this headline">¶</a></h3>
+<p>Fortunately for some of the newer S2 images obtained from GEE, we can simply use the final channel.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">src.visualization.plot_utils</span> <span class="kn">import</span> <span class="n">plot_s2_cloud_prob_image</span>
+
+
+<span class="c1"># initialize figure</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">16</span><span class="p">))</span>
+
+<span class="c1"># plot image</span>
+<span class="n">plot_s2_cloud_prob_image</span><span class="p">(</span><span class="n">S2_IMG_PATH</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Reds&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Cloud Probabilities&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../../_images/gt_masks_generation_9_0.png" src="../../../../_images/gt_masks_generation_9_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="model-based">
+<h3>Model-Based<a class="headerlink" href="#model-based" title="Permalink to this headline">¶</a></h3>
+<p>In other cases where this is not available, we can also use models on the original image. One method that we use within this library is called <code class="docutils literal notranslate"><span class="pre">s2cloudless</span></code>, found <a class="reference external" href="https://github.com/sentinel-hub/sentinel2-cloud-detector">here</a>. This is a model from the sentinel-hub which has a very convenient API for our uses. See <a class="reference external" href="https://medium.com/sentinel-hub/improving-cloud-detection-with-machine-learning-c09dc5d7cf13">this blog</a> for more details.</p>
+<p>Below, we showcase how we can return cloudmasks in a single function within this library.</p>
+<p><strong>Warnings</strong>: This will take a while to run. Please skip over the section to resume the tutorial.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %%time</span>
+<span class="c1"># from src.data.cloud_masks import compute_s2cloudless_probs</span>
+
+<span class="c1"># # calculate cloud probabilities using cloudless</span>
+<span class="c1"># s2_cloud_probs = compute_s2cloudless_probs(S2_IMG_PATH)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="figure">
+<h4>Figure<a class="headerlink" href="#figure" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fig, ax = plt.subplots(figsize=(16,16))</span>
+
+<span class="c1"># with rasterio.open(S2_IMG_PATH, &quot;r&quot;) as s2_rst:</span>
+<span class="c1">#     transform = s2_rst.transform</span>
+
+<span class="c1"># rasterioplt.show(s2_cloud_probs, ax=ax, transform=transform, cmap=&quot;Reds&quot;)</span>
+
+<span class="c1"># ax.set(</span>
+<span class="c1">#     title=&quot;S2CloudLess Cloud Probabilities&quot;,</span>
+<span class="c1"># )</span>
+<span class="c1"># plt.show()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note</strong>: This is actually the same library that is used within the GEE platform! See <a class="reference external" href="https://developers.google.com/earth-engine/tutorials/community/sentinel-2-s2cloudless">this tutorial</a> for more information.</p>
+</div>
+</div>
+</div>
+<div class="section" id="water-masks">
+<h2>Water Masks<a class="headerlink" href="#water-masks" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="permanent-water">
+<h3>Permanent Water<a class="headerlink" href="#permanent-water" title="Permalink to this headline">¶</a></h3>
+<p>So firstly, we have the permanent water. These are streams, rivers and lakes that already exist. This serves as a basis for where the flood events <em>could</em> occur.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># permanent water</span>
+<span class="n">JRC_IMG_PATH</span> <span class="o">=</span> <span class="s2">&quot;gs://ml4cc_data_lake/0_DEV/1_Staging/WorldFloods/JRC/EMSR501/AOI01/EMSR501_AOI01_DEL_MONIT01_r1_v1.tif&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">src.visualization.plot_utils</span> <span class="kn">import</span> <span class="n">plot_tiff_image</span>
+
+
+<span class="c1"># initialize figure</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">16</span><span class="p">))</span>
+
+
+<span class="n">plot_tiff_image</span><span class="p">(</span><span class="n">JRC_IMG_PATH</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Permanent Water&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../../_images/gt_masks_generation_18_0.png" src="../../../../_images/gt_masks_generation_18_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="flood-events">
+<h3>Flood Events<a class="headerlink" href="#flood-events" title="Permalink to this headline">¶</a></h3>
+<p>We need the flood events. These come from the Copernicus EMS data source where we have already preprocessed them to extract the necessary information for floods. These come in the form of <code class="docutils literal notranslate"><span class="pre">geojson</span></code> files which keep all of the polygons indicating the specific coordinates where there was a drought. We can easily read it with the <code class="docutils literal notranslate"><span class="pre">geopandas</span></code> package.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">FLOODMAP_PATH</span> <span class="o">=</span> <span class="s2">&quot;gs://ml4cc_data_lake/0_DEV/1_Staging/WorldFloods/floodmap/EMSR501/AOI01/EMSR501_AOI01_DEL_MONIT01_r1_v1_floodmap.geojson&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+
+
+<span class="n">floodmap_df</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">FLOODMAP_PATH</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">floodmap_df</span><span class="p">[</span><span class="n">floodmap_df</span><span class="p">[</span><span class="s2">&quot;w_class&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Flooded area&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>w_class</th>
+      <th>source</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Flooded area</td>
+      <td>flood</td>
+      <td>POLYGON ((19.48136 42.09515, 19.48136 42.09513...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Flooded area</td>
+      <td>flood</td>
+      <td>POLYGON ((19.48847 42.09425, 19.48848 42.09408...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Flooded area</td>
+      <td>flood</td>
+      <td>POLYGON ((19.48667 42.09529, 19.48668 42.09520...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Flooded area</td>
+      <td>flood</td>
+      <td>POLYGON ((19.47947 42.09510, 19.47947 42.09493...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Flooded area</td>
+      <td>flood</td>
+      <td>POLYGON ((19.48150 42.09416, 19.48151 42.09372...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>746</th>
+      <td>Flooded area</td>
+      <td>flood</td>
+      <td>POLYGON ((19.40004 41.95977, 19.40107 41.95935...</td>
+    </tr>
+    <tr>
+      <th>747</th>
+      <td>Flooded area</td>
+      <td>flood</td>
+      <td>POLYGON ((19.44093 41.99522, 19.44084 41.99522...</td>
+    </tr>
+    <tr>
+      <th>748</th>
+      <td>Flooded area</td>
+      <td>flood</td>
+      <td>POLYGON ((19.44152 41.99568, 19.44141 41.99567...</td>
+    </tr>
+    <tr>
+      <th>749</th>
+      <td>Flooded area</td>
+      <td>flood</td>
+      <td>POLYGON ((19.44164 41.99577, 19.44152 41.99577...</td>
+    </tr>
+    <tr>
+      <th>750</th>
+      <td>Flooded area</td>
+      <td>flood</td>
+      <td>POLYGON ((19.44141 41.99531, 19.44095 41.99531...</td>
+    </tr>
+  </tbody>
+</table>
+<p>751 rows × 3 columns</p>
+</div></div></div>
+</div>
+<p>That’s it! We can also plot this just to get an overview of the polygons available. Remember the last polygon is the area of interest, so plot all except that one.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize figure</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">16</span><span class="p">))</span>
+
+<span class="n">floodmap_df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;None&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Flood Maps&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Floodmaps&quot;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../../_images/gt_masks_generation_24_0.png" src="../../../../_images/gt_masks_generation_24_0.png" />
+</div>
+</div>
+<div class="section" id="plot-floodmaps-on-permanent-water">
+<h4>Plot - FloodMaps On Permanent Water<a class="headerlink" href="#plot-floodmaps-on-permanent-water" title="Permalink to this headline">¶</a></h4>
+<p>We can also plot the floodmaps on the permanent water to get an overview of how much these flood maps overlap with the already placed permanent water areas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize figure</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">16</span><span class="p">))</span>
+
+<span class="c1"># plot the permanent water</span>
+<span class="n">plot_tiff_image</span><span class="p">(</span><span class="n">JRC_IMG_PATH</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Permanent Water&quot;</span><span class="p">)</span>
+
+<span class="c1"># plot the floodmap</span>
+<span class="n">floodmap_df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;None&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Flood Maps&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../../_images/gt_masks_generation_26_0.png" src="../../../../_images/gt_masks_generation_26_0.png" />
+</div>
+</div>
+<p>So we can see that it’s very clear that there is some overlap between the permanent water and the flood maps, but there are also many areas that extend beyond the standard region.</p>
+</div>
+<div class="section" id="figure-floodmaps-on-s2-image">
+<h4>Figure - FloodMaps On S2 Image<a class="headerlink" href="#figure-floodmaps-on-s2-image" title="Permalink to this headline">¶</a></h4>
+<p>We can actually overlay the floodmaps onto the S2 Image. Because all of the geocoordinates are consistent, this allows us to visualize all of the pieces together.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize figure</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">16</span><span class="p">))</span>
+
+<span class="c1"># plot S2 Image</span>
+<span class="n">plot_s2_rbg_image</span><span class="p">(</span><span class="n">S2_IMG_PATH</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;S2 Image&quot;</span><span class="p">)</span>
+
+<span class="c1"># plot the floodmap</span>
+<span class="n">floodmap_df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;None&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Flood Maps&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../../_images/gt_masks_generation_29_0.png" src="../../../../_images/gt_masks_generation_29_0.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>Ground Truth<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>So now we’ve seen all of the bits and pieces needed to get the data required to create the ground truth: 1) S2 Image, 2) Cloud Masks, 3) FloodMaps, 4) Permanent Water. We can now create some ground truth images which can be used for our machine learning problem.</p>
+<div class="section" id="class-problem">
+<h3>3-Class Problem<a class="headerlink" href="#class-problem" title="Permalink to this headline">¶</a></h3>
+<p>This first ground truth type is a 3-class problem: Land, Water, Cloud. We basically fuse these four resources together to create the ground truth. So a simple logistic regression model would be able to use this. However, it would probably do poorly due to the complexity of the data.</p>
+<p>It’s very simple to generate ground truth with the functions we created.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">src.data.create_gt</span> <span class="kn">import</span> <span class="n">generate_land_water_cloud_gt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="c1"># Might need to run again if the code breaks.</span>
+
+<span class="n">gt</span><span class="p">,</span> <span class="n">gt_meta</span> <span class="o">=</span> <span class="n">generate_land_water_cloud_gt</span><span class="p">(</span>                        
+    <span class="n">S2_IMG_PATH</span><span class="p">,</span>
+    <span class="n">FLOODMAP_PATH</span><span class="p">,</span>
+    <span class="n">keep_streams</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">cloudprob_in_lastband</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">permanent_water_image_path</span><span class="o">=</span><span class="n">JRC_IMG_PATH</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/satyarth934/miniconda3/envs/ml4fl_py38/lib/python3.8/site-packages/rasterio/features.py:318: ShapeSkipWarning: Invalid or empty shape None at index 853 will not be rasterized.
+  warnings.warn(&#39;Invalid or empty shape {} at index {} will not be rasterized.&#39;.format(geom, index), ShapeSkipWarning)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 25.9 s, sys: 957 ms, total: 26.9 s
+Wall time: 47.7 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gt_meta</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;gtversion&#39;: &#39;v1&#39;,
+ &#39;encoding_values&#39;: {-1: &#39;invalid&#39;, 0: &#39;land&#39;, 1: &#39;water&#39;, 2: &#39;cloud&#39;},
+ &#39;shape&#39;: [2928, 6107],
+ &#39;s2_image_path&#39;: &#39;EMSR501_AOI01_DEL_MONIT01_r1_v1.tif&#39;,
+ &#39;permanent_water_image_path&#39;: &#39;EMSR501_AOI01_DEL_MONIT01_r1_v1.tif&#39;,
+ &#39;cloudprob_tiff&#39;: &#39;None&#39;,
+ &#39;method clouds&#39;: &#39;s2cloudless&#39;,
+ &#39;pixels invalid S2&#39;: 0,
+ &#39;pixels clouds S2&#39;: 643531,
+ &#39;pixels water S2&#39;: 3112734,
+ &#39;pixels land S2&#39;: 14125031,
+ &#39;pixels flood water S2&#39;: 726299,
+ &#39;pixels hydro water S2&#39;: 348995,
+ &#39;pixels permanent water S2&#39;: 2037440,
+ &#39;bounds&#39;: BoundingBox(left=19.2295166349193, bottom=41.840471662321306, right=19.77811777893109, top=42.1034983775115),
+ &#39;crs&#39;: CRS.from_epsg(4326),
+ &#39;transform&#39;: Affine(8.983152841195215e-05, 0.0, 19.2295166349193,
+        0.0, -8.983152841195215e-05, 42.1034983775115)}
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="demo">
+<h3>Demo<a class="headerlink" href="#demo" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">src.visualization.plot_utils</span> <span class="kn">import</span> <span class="n">get_cmap_norm_colors</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">COLORS</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="c1"># invalid</span>
+       <span class="p">[</span><span class="mi">139</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="c1"># land</span>
+       <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">139</span><span class="p">],</span> <span class="c1"># water</span>
+       <span class="p">[</span><span class="mi">220</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">220</span><span class="p">]],</span> <span class="c1"># cloud</span>
+      <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span>
+
+
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Invalid&quot;</span><span class="p">,</span> <span class="s2">&quot;Land&quot;</span><span class="p">,</span> <span class="s2">&quot;Flood water&quot;</span><span class="p">,</span> <span class="s2">&quot;Cloud&quot;</span><span class="p">,</span> <span class="p">]</span>
+<span class="n">cmap_cat</span><span class="p">,</span> <span class="n">norm_cat</span><span class="p">,</span> <span class="n">patches</span> <span class="o">=</span> <span class="n">get_cmap_norm_colors</span><span class="p">(</span><span class="n">COLORS</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">16</span><span class="p">))</span>
+
+<span class="n">im_plt</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">gt</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_cat</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm_cat</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+    <span class="n">handles</span><span class="o">=</span><span class="n">patches</span><span class="p">,</span>
+    <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span>
+    <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../../_images/gt_masks_generation_38_0.png" src="../../../../_images/gt_masks_generation_38_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>2-Class Problem<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>In this ground truth, we generate 2-band ground truth which consists of a binary classification problem for</p>
+<div class="section" id="meta-data">
+<h3>Meta Data<a class="headerlink" href="#meta-data" title="Permalink to this headline">¶</a></h3>
+<p>There is one more dataset we need for the binary class problem, the <code class="docutils literal notranslate"><span class="pre">floodmap_meta</span></code>. This contains some vital information for sorting the into their appropriate parts. It’s located in the bucket with the same file structure as all of the other parts as a <code class="docutils literal notranslate"><span class="pre">json</span></code> file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Flood Meta Path</span>
+<span class="n">FLOOD_META_PATH</span> <span class="o">=</span> <span class="s2">&quot;gs://ml4cc_data_lake/0_DEV/1_Staging/WorldFloods/flood_meta/EMSR501/AOI01/EMSR501_AOI01_DEL_MONIT01_r1_v1_metadata_floodmap.pickle&quot;</span>
+<span class="n">floodmap_meta</span> <span class="o">=</span> <span class="n">read_pickle_from_gcp</span><span class="p">(</span><span class="n">FLOOD_META_PATH</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we have the meta data, we’re good to go for generating the ground truth.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">src.data.create_gt</span> <span class="kn">import</span> <span class="n">generate_water_cloud_binary_gt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="c1"># Might need to run again if the code breaks.</span>
+
+<span class="n">gt_binary</span><span class="p">,</span> <span class="n">gt_meta_binary</span> <span class="o">=</span> <span class="n">generate_water_cloud_binary_gt</span><span class="p">(</span>                        
+    <span class="n">S2_IMG_PATH</span><span class="p">,</span>
+    <span class="n">FLOODMAP_PATH</span><span class="p">,</span>
+    <span class="n">metadata_floodmap</span><span class="o">=</span><span class="n">floodmap_meta</span><span class="p">,</span>
+    <span class="n">keep_streams</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">cloudprob_in_lastband</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">permanent_water_image_path</span><span class="o">=</span><span class="n">JRC_IMG_PATH</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 25.8 s, sys: 1.05 s, total: 26.9 s
+Wall time: 46.5 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">COLORS</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+    <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="c1"># invalid</span>
+    <span class="p">[</span><span class="mi">173</span><span class="p">,</span> <span class="mi">216</span><span class="p">,</span> <span class="mi">230</span><span class="p">],</span> <span class="c1"># no cloud</span>
+    <span class="p">[</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">]],</span> <span class="c1"># cloud</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span>
+
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Invalid&quot;</span><span class="p">,</span> <span class="s2">&quot;No Cloud&quot;</span><span class="p">,</span> <span class="s2">&quot;Cloud&quot;</span><span class="p">,]</span>
+<span class="n">cmap_cat</span><span class="p">,</span> <span class="n">norm_cat</span><span class="p">,</span> <span class="n">patches</span> <span class="o">=</span> <span class="n">get_cmap_norm_colors</span><span class="p">(</span><span class="n">COLORS</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">16</span><span class="p">))</span>
+
+<span class="n">im_plt</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">gt_binary</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_cat</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm_cat</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+    <span class="n">handles</span><span class="o">=</span><span class="n">patches</span><span class="p">,</span>
+    <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span>
+    <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../../_images/gt_masks_generation_46_0.png" src="../../../../_images/gt_masks_generation_46_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">COLORS</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+    <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="c1"># invalid</span>
+    <span class="p">[</span><span class="mi">139</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="c1"># land</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">139</span><span class="p">]],</span> <span class="c1"># water</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span>
+
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Invalid&quot;</span><span class="p">,</span> <span class="s2">&quot;Land&quot;</span><span class="p">,</span> <span class="s2">&quot;Flood water&quot;</span><span class="p">,]</span>
+<span class="n">cmap_cat</span><span class="p">,</span> <span class="n">norm_cat</span><span class="p">,</span> <span class="n">patches</span> <span class="o">=</span> <span class="n">get_cmap_norm_colors</span><span class="p">(</span><span class="n">COLORS</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">16</span><span class="p">))</span>
+
+<span class="n">im_plt</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">gt_binary</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_cat</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm_cat</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+    <span class="n">handles</span><span class="o">=</span><span class="n">patches</span><span class="p">,</span>
+    <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span>
+    <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../../_images/gt_masks_generation_48_0.png" src="../../../../_images/gt_masks_generation_48_0.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-ml4fl_py38-py"
+        },
+        kernelOptions: {
+            kernelName: "conda-env-ml4fl_py38-py",
+            path: "./_buildbak/jupyter_execute/content/prep"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-ml4fl_py38-py'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By spaceml<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../../../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,977 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Train models &#8212; ML4Floods</title>
+    
+  <link rel="stylesheet" href="../../../../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../../../index.html">
+  
+  <img src="../../../../_static/ml4cc_logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">ML4Floods</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../content/intro/introduction.html">
+   Introduction to MC4Floods
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Install
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../content/config.html">
+   Environments
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Data prep
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../content/prep/full_data_ingest.html">
+   Full Data Ingest
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../content/prep/geographic_index_demo.html">
+   Geographic index demo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../content/prep/gt_masks_generation.html">
+   Ground Truth
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../content/prep/demo_pytorch_transforms.html">
+   PreProcessing Demonstration
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  MLOps
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../content/ml4ops/HOWTO_Train_models.html">
+   Train models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../content/ml4ops/HOWTO_performance_metrics_workflow.html">
+   Model Metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../content/ml4ops/HOWTO_Run_Inference_on_new_data.html">
+   Run inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../content/ml4ops/HOWTO_Run_Inference_multioutput_binary.html">
+   Cloud removal inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../content/ml4ops/HOWTO_Calculate_uncertainty_maps.html">
+   Probabilistic neural networks
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../../_sources/_buildbak/jupyter_execute/content/ml4ops/HOWTO_Train_models.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/_buildbak/jupyter_execute/content/ml4ops/HOWTO_Train_models.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-0-notebook-setup">
+   Step 0: Notebook setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-1-setup-configuration-file">
+   Step 1: Setup Configuration file
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-1-a-seed-everything-for-reproducibility">
+   Step 1.a: Seed everything for reproducibility
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-1-b-make-it-a-unique-experiment">
+   Step 1.b: Make it a unique experiment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-2-setup-dataloader">
+   Step 2: Setup Dataloader
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-3-setup-model">
+   Step 3: Setup Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-4-set-up-weights-and-biases-logger-for-experiment">
+   Step 4: Set up Weights and Biases Logger for experiment
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-5-setup-lightning-callbacks">
+     Step 5: Setup Lightning Callbacks
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-6-setup-lighting-trainer">
+   Step 6: Setup Lighting Trainer
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#start-training">
+     Start Training!
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-7-save-trained-model">
+   Step 7: Save trained model
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="train-models">
+<h1>Train models<a class="headerlink" href="#train-models" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>Tutorial 1: Train a Flood Extent segmentation model using the WorldFloods dataset</p>
+</div></blockquote>
+<div class="section" id="step-0-notebook-setup">
+<h2>Step 0: Notebook setup<a class="headerlink" href="#step-0-notebook-setup" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- Configure notebook basics
+- Configure GCP Credentials
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">pyprojroot</span> <span class="kn">import</span> <span class="n">here</span>
+<span class="c1"># spyder up to find the root</span>
+<span class="n">root</span> <span class="o">=</span> <span class="n">here</span><span class="p">(</span><span class="n">project_files</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;.here&quot;</span><span class="p">])</span>
+<span class="c1"># append to path</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">here</span><span class="p">()))</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;GOOGLE_APPLICATION_CREDENTIALS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/opt/creds/ML4CC_creds.json&quot;</span>
+
+<span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="step-1-setup-configuration-file">
+<h2>Step 1: Setup Configuration file<a class="headerlink" href="#step-1-setup-configuration-file" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- Load configuration file from local device or gcs
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">src.models.config_setup</span> <span class="kn">import</span> <span class="n">get_default_config</span>
+
+<span class="c1"># Set filepath to configuration files</span>
+<span class="n">config_fp</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s1">&#39;src/models/configurations&#39;</span><span class="p">,</span> <span class="s1">&#39;worldfloods_template.json&#39;</span><span class="p">)</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">get_default_config</span><span class="p">(</span><span class="n">config_fp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loaded Config for experiment:  worldfloods_demo_test
+{   &#39;data_params&#39;: {   &#39;batch_size&#39;: 32,
+                       &#39;bucket_id&#39;: &#39;ml4floods&#39;,
+                       &#39;channel_configuration&#39;: &#39;all&#39;,
+                       &#39;filter_windows&#39;: {   &#39;apply&#39;: False,
+                                             &#39;threshold_clouds&#39;: 0.5,
+                                             &#39;version&#39;: &#39;v1&#39;},
+                       &#39;input_folder&#39;: &#39;S2&#39;,
+                       &#39;loader_type&#39;: &#39;local&#39;,
+                       &#39;num_workers&#39;: 4,
+                       &#39;path_to_splits&#39;: &#39;/worldfloods/public&#39;,
+                       &#39;target_folder&#39;: &#39;gt&#39;,
+                       &#39;test_transformation&#39;: {&#39;normalize&#39;: True},
+                       &#39;train_test_split_file&#39;: &#39;worldfloods/public/train_test_split.json&#39;,
+                       &#39;train_transformation&#39;: {&#39;normalize&#39;: True},
+                       &#39;window_size&#39;: [256, 256]},
+    &#39;deploy&#39;: False,
+    &#39;experiment_name&#39;: &#39;worldfloods_demo_test&#39;,
+    &#39;gpus&#39;: &#39;0&#39;,
+    &#39;model_params&#39;: {   &#39;hyperparameters&#39;: {   &#39;channel_configuration&#39;: &#39;all&#39;,
+                                               &#39;label_names&#39;: [   &#39;land&#39;,
+                                                                  &#39;water&#39;,
+                                                                  &#39;cloud&#39;],
+                                               &#39;lr&#39;: 0.0001,
+                                               &#39;lr_decay&#39;: 0.5,
+                                               &#39;lr_patience&#39;: 2,
+                                               &#39;max_epochs&#39;: 10,
+                                               &#39;max_tile_size&#39;: 256,
+                                               &#39;metric_monitor&#39;: &#39;val_dice_loss&#39;,
+                                               &#39;model_type&#39;: &#39;linear&#39;,
+                                               &#39;num_channels&#39;: 13,
+                                               &#39;num_classes&#39;: 3,
+                                               &#39;val_every&#39;: 1,
+                                               &#39;weight_per_class&#39;: [   1.93445299,
+                                                                       36.60054169,
+                                                                       2.19400729]},
+                        &#39;model_folder&#39;: &#39;gs://ml4cc_data_lake/0_DEV/2_Mart/2_MLModelMart&#39;,
+                        &#39;model_version&#39;: &#39;v1&#39;,
+                        &#39;test&#39;: True,
+                        &#39;train&#39;: True},
+    &#39;resume_from_checkpoint&#39;: False,
+    &#39;seed&#39;: 12,
+    &#39;test&#39;: False,
+    &#39;train&#39;: False}
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="step-1-a-seed-everything-for-reproducibility">
+<h2>Step 1.a: Seed everything for reproducibility<a class="headerlink" href="#step-1-a-seed-everything-for-reproducibility" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pytorch_lightning</span> <span class="kn">import</span> <span class="n">seed_everything</span>
+<span class="c1"># Seed</span>
+<span class="n">seed_everything</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">seed</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Global seed set to 12
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="step-1-b-make-it-a-unique-experiment">
+<h2>Step 1.b: Make it a unique experiment<a class="headerlink" href="#step-1-b-make-it-a-unique-experiment" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- &#39;experiment_name&#39; is used to specify the folder in which to save models and associated files
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">config</span><span class="o">.</span><span class="n">experiment_name</span> <span class="o">=</span> <span class="s1">&#39;training_demo&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="step-2-setup-dataloader">
+<h2>Step 2: Setup Dataloader<a class="headerlink" href="#step-2-setup-dataloader" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- &#39;loader_type&#39; can be one of &#39;local&#39; which assumes the images are already saved locally, or &#39;bucket&#39; which will load images directly from the bucket specified in &#39;bucket_id&#39;
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">src.models.dataset_setup</span> <span class="kn">import</span> <span class="n">get_dataset</span>
+
+<span class="n">config</span><span class="o">.</span><span class="n">data_params</span><span class="o">.</span><span class="n">loader_type</span> <span class="o">=</span> <span class="s1">&#39;local&#39;</span>
+<span class="n">config</span><span class="o">.</span><span class="n">data_params</span><span class="o">.</span><span class="n">path_to_splits</span> <span class="o">=</span> <span class="s2">&quot;/worldfloods/public/&quot;</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">get_dataset</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">data_params</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using local dataset for this run
+train 196648  tiles
+val 1284  tiles
+test 11  tiles
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="step-3-setup-model">
+<h2>Step 3: Setup Model<a class="headerlink" href="#step-3-setup-model" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> - &#39;train&#39; = True specifies that we are training a new model from scratch
+ - get_model(args) constructs a pytorch lightning model using the configuration specified in &#39;config.model_params&#39;
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">config</span><span class="o">.</span><span class="n">model_params</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;model_folder&#39;: &#39;gs://ml4cc_data_lake/0_DEV/2_Mart/2_MLModelMart&#39;,
+ &#39;model_version&#39;: &#39;v1&#39;,
+ &#39;hyperparameters&#39;: {&#39;max_tile_size&#39;: 256,
+  &#39;metric_monitor&#39;: &#39;val_dice_loss&#39;,
+  &#39;channel_configuration&#39;: &#39;all&#39;,
+  &#39;label_names&#39;: [&#39;land&#39;, &#39;water&#39;, &#39;cloud&#39;],
+  &#39;weight_per_class&#39;: [1.93445299, 36.60054169, 2.19400729],
+  &#39;model_type&#39;: &#39;linear&#39;,
+  &#39;num_classes&#39;: 3,
+  &#39;max_epochs&#39;: 10,
+  &#39;val_every&#39;: 1,
+  &#39;lr&#39;: 0.0001,
+  &#39;lr_decay&#39;: 0.5,
+  &#39;lr_patience&#39;: 2,
+  &#39;num_channels&#39;: 13},
+ &#39;train&#39;: True,
+ &#39;test&#39;: True}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">src.models.model_setup</span> <span class="kn">import</span> <span class="n">get_model</span>
+
+<span class="n">config</span><span class="o">.</span><span class="n">model_params</span><span class="o">.</span><span class="n">test</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">config</span><span class="o">.</span><span class="n">model_params</span><span class="o">.</span><span class="n">train</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">get_model</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">model_params</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="step-4-set-up-weights-and-biases-logger-for-experiment">
+<h2>Step 4: Set up Weights and Biases Logger for experiment<a class="headerlink" href="#step-4-set-up-weights-and-biases-logger-for-experiment" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- We pass this to the model trainer in a later cell to automaticall log relevant metrics to wandb
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">wandb</span>
+<span class="kn">from</span> <span class="nn">pytorch_lightning.loggers</span> <span class="kn">import</span> <span class="n">WandbLogger</span>
+
+<span class="c1"># UNCOMMENT ON FIRST RUN TO LOGIN TO Weights and Biases (only needs to be done once)</span>
+<span class="n">wandb</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+<span class="n">run</span> <span class="o">=</span> <span class="n">wandb</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+
+<span class="c1"># Specifies who is logging the experiment to wandb</span>
+<span class="n">config</span><span class="p">[</span><span class="s1">&#39;wandb_entity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;ml4floods&#39;</span>
+<span class="c1"># Specifies which wandb project to log to, multiple runs can exist in the same project</span>
+<span class="n">config</span><span class="p">[</span><span class="s1">&#39;wandb_project&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;worldfloods-notebook-demo-project&#39;</span>
+
+<span class="n">wandb_logger</span> <span class="o">=</span> <span class="n">WandbLogger</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">experiment_name</span><span class="p">,</span>
+    <span class="n">project</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">wandb_project</span><span class="p">,</span> 
+    <span class="n">entity</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">wandb_entity</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Failed to detect the name of this notebook, you can set it manually with the WANDB_NOTEBOOK_NAME environment variable to enable code saving.
+<span class=" -Color -Color-Bold -Color-Bold-Blue">wandb</span>: Currently logged in as: <span class=" -Color -Color-Yellow">ipl_uv</span> (use `wandb login --relogin` to force relogin)
+<span class=" -Color -Color-Bold -Color-Bold-Blue">wandb</span>: wandb version 0.10.22 is available!  To upgrade, please run:
+<span class=" -Color -Color-Bold -Color-Bold-Blue">wandb</span>:  $ pip install wandb --upgrade
+</pre></div>
+</div>
+<div class="output text_html">
+Tracking run with wandb version 0.10.21<br/>
+Syncing run <strong style="color:#cdcd00">solar-morning-1</strong> to <a href="https://wandb.ai" target="_blank">Weights & Biases</a> <a href="https://docs.wandb.com/integrations/jupyter.html" target="_blank">(Documentation)</a>.<br/>
+Project page: <a href="https://wandb.ai/ipl_uv/ml4floods-notebooks_models" target="_blank">https://wandb.ai/ipl_uv/ml4floods-notebooks_models</a><br/>
+Run page: <a href="https://wandb.ai/ipl_uv/ml4floods-notebooks_models/runs/25j7wene" target="_blank">https://wandb.ai/ipl_uv/ml4floods-notebooks_models/runs/25j7wene</a><br/>
+Run data is saved locally in <code>/home/gonzalo/ml4floods/notebooks/models/wandb/run-20210318_151018-25j7wene</code><br/><br/>
+</div></div>
+</div>
+<div class="section" id="step-5-setup-lightning-callbacks">
+<h3>Step 5: Setup Lightning Callbacks<a class="headerlink" href="#step-5-setup-lightning-callbacks" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- We implement checkpointing using the ModelCheckpoint callback to save the best performing checkpoints to local/gcs storage
+- We implement early stopping using the EarlyStopping callback to stop training early if there is no performance improvement after 10 epochs from the latest best checkpoint
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pytorch_lightning.callbacks</span> <span class="kn">import</span> <span class="n">ModelCheckpoint</span><span class="p">,</span> <span class="n">EarlyStopping</span>
+<span class="n">experiment_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">model_params</span><span class="o">.</span><span class="n">model_folder</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">experiment_name</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="n">checkpoint_callback</span> <span class="o">=</span> <span class="n">ModelCheckpoint</span><span class="p">(</span>
+    <span class="n">dirpath</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">experiment_path</span><span class="si">}</span><span class="s2">/checkpoint&quot;</span><span class="p">,</span>
+    <span class="n">save_top_k</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_dice_loss&#39;</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;min&#39;</span><span class="p">,</span>
+    <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<span class="p">)</span>
+
+<span class="n">early_stop_callback</span> <span class="o">=</span> <span class="n">EarlyStopping</span><span class="p">(</span>
+    <span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_dice_loss&#39;</span><span class="p">,</span>
+    <span class="n">patience</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;min&#39;</span>
+<span class="p">)</span>
+
+<span class="n">callbacks</span> <span class="o">=</span> <span class="p">[</span><span class="n">checkpoint_callback</span><span class="p">,</span> <span class="n">early_stop_callback</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">model_params</span><span class="o">.</span><span class="n">model_folder</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">experiment_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gs://ml4cc_data_lake/0_DEV/2_Mart/2_MLModelMart/worldfloods-notebook-training-demo
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ml4floods/lib/python3.8/site-packages/pytorch_lightning/utilities/distributed.py:50: UserWarning: Checkpoint directory gs://ml4cc_data_lake/0_DEV/2_Mart/2_MLModelMart/worldfloods-notebook-training-demo/checkpoint exists and is not empty.
+  warnings.warn(*args, **kwargs)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="step-6-setup-lighting-trainer">
+<h2>Step 6: Setup Lighting Trainer<a class="headerlink" href="#step-6-setup-lighting-trainer" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>-- Pytorch Lightning Trainer handles all the rest of the model training for us!
+-- add flags from 
+https://pytorch-lightning.readthedocs.io/en/0.7.5/trainer.html 
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pytorch_lightning</span> <span class="kn">import</span> <span class="n">Trainer</span>
+
+<span class="n">config</span><span class="o">.</span><span class="n">gpus</span> <span class="o">=</span> <span class="s1">&#39;2&#39;</span>  <span class="c1"># which gpu to use</span>
+
+<span class="n">config</span><span class="o">.</span><span class="n">model_params</span><span class="o">.</span><span class="n">hyperparameters</span><span class="o">.</span><span class="n">max_epochs</span> <span class="o">=</span> <span class="mi">4</span> <span class="c1"># train for maximum 4 epochs</span>
+
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span>
+    <span class="n">fast_dev_run</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">logger</span><span class="o">=</span><span class="n">wandb_logger</span><span class="p">,</span>
+    <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">,</span>
+    <span class="n">default_root_dir</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">model_params</span><span class="o">.</span><span class="n">model_folder</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">experiment_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">accumulate_grad_batches</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">gradient_clip_val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">auto_lr_find</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">benchmark</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">distributed_backend</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">gpus</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">gpus</span><span class="p">,</span>
+    <span class="n">max_epochs</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model_params</span><span class="o">.</span><span class="n">hyperparameters</span><span class="o">.</span><span class="n">max_epochs</span><span class="p">,</span>
+    <span class="n">check_val_every_n_epoch</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">model_params</span><span class="o">.</span><span class="n">hyperparameters</span><span class="o">.</span><span class="n">val_every</span><span class="p">,</span>
+    <span class="n">log_gpu_memory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">resume_from_checkpoint</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GPU available: True, used: True
+TPU available: None, using: 0 TPU cores
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="start-training">
+<h3>Start Training!<a class="headerlink" href="#start-training" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  | Name    | Type         | Params
+-----------------------------------------
+0 | network | SimpleLinear | 42    
+-----------------------------------------
+42        Trainable params
+0         Non-trainable params
+42        Total params
+0.000     Total estimated model params size (MB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Validation sanity check:   0%|          | 0/2 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ml4floods/lib/python3.8/site-packages/pytorch_lightning/utilities/distributed.py:50: UserWarning: The dataloader, val dataloader 0, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 24 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  warnings.warn(*args, **kwargs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 0:  99%|█████████▉| 6147/6187 [46:53&lt;00:18,  2.18it/s, loss=1.16, v_num=wene]
+Validating: 0it [00:00, ?it/s]
+Validating:   0%|          | 0/41 [00:00&lt;?, ?it/s]
+Epoch 0:  99%|█████████▉| 6149/6187 [46:57&lt;00:17,  2.18it/s, loss=1.16, v_num=wene]
+Epoch 0:  99%|█████████▉| 6151/6187 [46:59&lt;00:16,  2.18it/s, loss=1.16, v_num=wene]
+Validating:  12%|█▏        | 5/41 [00:06&lt;00:43,  1.20s/it]
+Epoch 0:  99%|█████████▉| 6153/6187 [47:01&lt;00:15,  2.18it/s, loss=1.16, v_num=wene]
+Validating:  17%|█▋        | 7/41 [00:09&lt;00:42,  1.26s/it]
+Epoch 0:  99%|█████████▉| 6155/6187 [47:04&lt;00:14,  2.18it/s, loss=1.16, v_num=wene]
+Validating:  22%|██▏       | 9/41 [00:11&lt;00:40,  1.28s/it]
+Epoch 0: 100%|█████████▉| 6157/6187 [47:06&lt;00:13,  2.18it/s, loss=1.16, v_num=wene]
+Validating:  27%|██▋       | 11/41 [00:14&lt;00:38,  1.29s/it]
+Epoch 0: 100%|█████████▉| 6159/6187 [47:09&lt;00:12,  2.18it/s, loss=1.16, v_num=wene]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/gonzalo/ml4floods/src/models/utils/metrics.py:139: RuntimeWarning: divide by zero encountered in true_divide
+  recall = true_positive / (true_positive + false_negative)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Validating:  32%|███▏      | 13/41 [00:17&lt;00:36,  1.31s/it]
+Epoch 0: 100%|█████████▉| 6161/6187 [47:12&lt;00:11,  2.18it/s, loss=1.16, v_num=wene]
+Validating:  37%|███▋      | 15/41 [00:19&lt;00:33,  1.29s/it]
+Epoch 0: 100%|█████████▉| 6163/6187 [47:14&lt;00:11,  2.17it/s, loss=1.16, v_num=wene]
+Validating:  41%|████▏     | 17/41 [00:22&lt;00:30,  1.29s/it]
+Epoch 0: 100%|█████████▉| 6165/6187 [47:17&lt;00:10,  2.17it/s, loss=1.16, v_num=wene]
+Validating:  46%|████▋     | 19/41 [00:24&lt;00:28,  1.29s/it]
+Epoch 0: 100%|█████████▉| 6167/6187 [47:19&lt;00:09,  2.17it/s, loss=1.16, v_num=wene]
+Validating:  51%|█████     | 21/41 [00:27&lt;00:25,  1.28s/it]
+Epoch 0: 100%|█████████▉| 6169/6187 [47:22&lt;00:08,  2.17it/s, loss=1.16, v_num=wene]
+Validating:  56%|█████▌    | 23/41 [00:29&lt;00:22,  1.25s/it]
+Epoch 0: 100%|█████████▉| 6171/6187 [47:24&lt;00:07,  2.17it/s, loss=1.16, v_num=wene]
+Validating:  61%|██████    | 25/41 [00:32&lt;00:20,  1.29s/it]
+Epoch 0: 100%|█████████▉| 6173/6187 [47:27&lt;00:06,  2.17it/s, loss=1.16, v_num=wene]
+Validating:  66%|██████▌   | 27/41 [00:35&lt;00:18,  1.31s/it]
+Epoch 0: 100%|█████████▉| 6175/6187 [47:30&lt;00:05,  2.17it/s, loss=1.16, v_num=wene]
+Validating:  71%|███████   | 29/41 [00:37&lt;00:15,  1.31s/it]
+Epoch 0: 100%|█████████▉| 6177/6187 [47:32&lt;00:04,  2.17it/s, loss=1.16, v_num=wene]
+Validating:  76%|███████▌  | 31/41 [00:40&lt;00:13,  1.31s/it]
+Epoch 0: 100%|█████████▉| 6179/6187 [47:35&lt;00:03,  2.16it/s, loss=1.16, v_num=wene]
+Validating:  80%|████████  | 33/41 [00:42&lt;00:10,  1.30s/it]
+Epoch 0: 100%|█████████▉| 6181/6187 [47:38&lt;00:02,  2.16it/s, loss=1.16, v_num=wene]
+Validating:  85%|████████▌ | 35/41 [00:45&lt;00:07,  1.30s/it]
+Epoch 0: 100%|█████████▉| 6183/6187 [47:40&lt;00:01,  2.16it/s, loss=1.16, v_num=wene]
+Validating:  90%|█████████ | 37/41 [00:47&lt;00:04,  1.24s/it]
+Epoch 0: 100%|█████████▉| 6185/6187 [47:43&lt;00:00,  2.16it/s, loss=1.16, v_num=wene]
+Validating:  95%|█████████▌| 39/41 [00:50&lt;00:02,  1.28s/it]
+Epoch 0: 100%|██████████| 6187/6187 [47:45&lt;00:00,  2.16it/s, loss=1.16, v_num=wene]
+                                                           
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 0, global step 6145: val_dice_loss reached 0.71664 (best 0.71664), saving model to &quot;gs://ml4cc_data_lake/0_DEV/2_Mart/2_MLModelMart/worldfloods-notebook-training-demo/checkpoint/epoch=0-step=6145.ckpt&quot; as top True
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1:  99%|█████████▉| 6146/6187 [46:36&lt;00:18,  2.20it/s, loss=1.05, v_num=wene] 
+Validating: 0it [00:00, ?it/s]
+Validating:   0%|          | 0/41 [00:00&lt;?, ?it/s]
+Epoch 1:  99%|█████████▉| 6148/6187 [46:40&lt;00:17,  2.20it/s, loss=1.05, v_num=wene]
+Epoch 1:  99%|█████████▉| 6150/6187 [46:40&lt;00:16,  2.20it/s, loss=1.05, v_num=wene]
+Validating:  10%|▉         | 4/41 [00:05&lt;00:42,  1.16s/it]
+Epoch 1:  99%|█████████▉| 6152/6187 [46:43&lt;00:15,  2.19it/s, loss=1.05, v_num=wene]
+Validating:  15%|█▍        | 6/41 [00:07&lt;00:43,  1.25s/it]
+Epoch 1:  99%|█████████▉| 6154/6187 [46:46&lt;00:15,  2.19it/s, loss=1.05, v_num=wene]
+Validating:  20%|█▉        | 8/41 [00:10&lt;00:42,  1.28s/it]
+Epoch 1:  99%|█████████▉| 6156/6187 [46:48&lt;00:14,  2.19it/s, loss=1.05, v_num=wene]
+Validating:  24%|██▍       | 10/41 [00:13&lt;00:40,  1.31s/it]
+Epoch 1: 100%|█████████▉| 6158/6187 [46:51&lt;00:13,  2.19it/s, loss=1.05, v_num=wene]
+Validating:  29%|██▉       | 12/41 [00:15&lt;00:38,  1.33s/it]
+Epoch 1: 100%|█████████▉| 6160/6187 [46:54&lt;00:12,  2.19it/s, loss=1.05, v_num=wene]
+Validating:  34%|███▍      | 14/41 [00:18&lt;00:35,  1.32s/it]
+Epoch 1: 100%|█████████▉| 6162/6187 [46:56&lt;00:11,  2.19it/s, loss=1.05, v_num=wene]
+Validating:  39%|███▉      | 16/41 [00:21&lt;00:32,  1.30s/it]
+Epoch 1: 100%|█████████▉| 6164/6187 [46:59&lt;00:10,  2.19it/s, loss=1.05, v_num=wene]
+Validating:  44%|████▍     | 18/41 [00:23&lt;00:29,  1.30s/it]
+Epoch 1: 100%|█████████▉| 6166/6187 [47:01&lt;00:09,  2.19it/s, loss=1.05, v_num=wene]
+Validating:  49%|████▉     | 20/41 [00:26&lt;00:27,  1.29s/it]
+Epoch 1: 100%|█████████▉| 6168/6187 [47:04&lt;00:08,  2.18it/s, loss=1.05, v_num=wene]
+Validating:  54%|█████▎    | 22/41 [00:28&lt;00:23,  1.22s/it]
+Epoch 1: 100%|█████████▉| 6170/6187 [47:06&lt;00:07,  2.18it/s, loss=1.05, v_num=wene]
+Validating:  59%|█████▊    | 24/41 [00:31&lt;00:21,  1.28s/it]
+Epoch 1: 100%|█████████▉| 6172/6187 [47:09&lt;00:06,  2.18it/s, loss=1.05, v_num=wene]
+Validating:  63%|██████▎   | 26/41 [00:34&lt;00:19,  1.31s/it]
+Epoch 1: 100%|█████████▉| 6174/6187 [47:12&lt;00:05,  2.18it/s, loss=1.05, v_num=wene]
+Validating:  68%|██████▊   | 28/41 [00:36&lt;00:17,  1.32s/it]
+Epoch 1: 100%|█████████▉| 6176/6187 [47:14&lt;00:05,  2.18it/s, loss=1.05, v_num=wene]
+Validating:  73%|███████▎  | 30/41 [00:39&lt;00:14,  1.32s/it]
+Epoch 1: 100%|█████████▉| 6178/6187 [47:17&lt;00:04,  2.18it/s, loss=1.05, v_num=wene]
+Validating:  78%|███████▊  | 32/41 [00:41&lt;00:11,  1.31s/it]
+Epoch 1: 100%|█████████▉| 6180/6187 [47:19&lt;00:03,  2.18it/s, loss=1.05, v_num=wene]
+Validating:  83%|████████▎ | 34/41 [00:44&lt;00:09,  1.30s/it]
+Epoch 1: 100%|█████████▉| 6182/6187 [47:22&lt;00:02,  2.17it/s, loss=1.05, v_num=wene]
+Validating:  88%|████████▊ | 36/41 [00:47&lt;00:06,  1.31s/it]
+Epoch 1: 100%|█████████▉| 6184/6187 [47:25&lt;00:01,  2.17it/s, loss=1.05, v_num=wene]
+Validating:  93%|█████████▎| 38/41 [00:49&lt;00:03,  1.27s/it]
+Epoch 1: 100%|█████████▉| 6186/6187 [47:27&lt;00:00,  2.17it/s, loss=1.05, v_num=wene]
+Epoch 1: 100%|██████████| 6187/6187 [47:29&lt;00:00,  2.17it/s, loss=1.05, v_num=wene]
+                                                           
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1, global step 12291: val_dice_loss reached 0.68838 (best 0.68838), saving model to &quot;gs://ml4cc_data_lake/0_DEV/2_Mart/2_MLModelMart/worldfloods-notebook-training-demo/checkpoint/epoch=1-step=12291.ckpt&quot; as top True
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 2:  99%|█████████▉| 6146/6187 [47:08&lt;00:18,  2.17it/s, loss=0.957, v_num=wene]
+Validating: 0it [00:00, ?it/s]
+Validating:   0%|          | 0/41 [00:00&lt;?, ?it/s]
+Epoch 2:  99%|█████████▉| 6148/6187 [47:12&lt;00:17,  2.17it/s, loss=0.957, v_num=wene]
+Epoch 2:  99%|█████████▉| 6150/6187 [47:12&lt;00:17,  2.17it/s, loss=0.957, v_num=wene]
+Validating:  10%|▉         | 4/41 [00:05&lt;00:44,  1.20s/it]
+Epoch 2:  99%|█████████▉| 6152/6187 [47:15&lt;00:16,  2.17it/s, loss=0.957, v_num=wene]
+Validating:  15%|█▍        | 6/41 [00:08&lt;00:45,  1.30s/it]
+Epoch 2:  99%|█████████▉| 6154/6187 [47:18&lt;00:15,  2.17it/s, loss=0.957, v_num=wene]
+Validating:  20%|█▉        | 8/41 [00:10&lt;00:43,  1.33s/it]
+Epoch 2:  99%|█████████▉| 6156/6187 [47:20&lt;00:14,  2.17it/s, loss=0.957, v_num=wene]
+Validating:  24%|██▍       | 10/41 [00:13&lt;00:41,  1.35s/it]
+Epoch 2: 100%|█████████▉| 6158/6187 [47:23&lt;00:13,  2.17it/s, loss=0.957, v_num=wene]
+Validating:  29%|██▉       | 12/41 [00:16&lt;00:40,  1.38s/it]
+Epoch 2: 100%|█████████▉| 6160/6187 [47:26&lt;00:12,  2.16it/s, loss=0.957, v_num=wene]
+Validating:  34%|███▍      | 14/41 [00:19&lt;00:37,  1.39s/it]
+Epoch 2: 100%|█████████▉| 6162/6187 [47:29&lt;00:11,  2.16it/s, loss=0.957, v_num=wene]
+Validating:  39%|███▉      | 16/41 [00:22&lt;00:34,  1.37s/it]
+Epoch 2: 100%|█████████▉| 6164/6187 [47:32&lt;00:10,  2.16it/s, loss=0.957, v_num=wene]
+Validating:  44%|████▍     | 18/41 [00:24&lt;00:31,  1.36s/it]
+Epoch 2: 100%|█████████▉| 6166/6187 [47:34&lt;00:09,  2.16it/s, loss=0.957, v_num=wene]
+Validating:  49%|████▉     | 20/41 [00:27&lt;00:28,  1.36s/it]
+Epoch 2: 100%|█████████▉| 6168/6187 [47:37&lt;00:08,  2.16it/s, loss=0.957, v_num=wene]
+Validating:  54%|█████▎    | 22/41 [00:29&lt;00:24,  1.28s/it]
+Epoch 2: 100%|█████████▉| 6170/6187 [47:39&lt;00:07,  2.16it/s, loss=0.957, v_num=wene]
+Validating:  59%|█████▊    | 24/41 [00:32&lt;00:22,  1.33s/it]
+Epoch 2: 100%|█████████▉| 6172/6187 [47:42&lt;00:06,  2.16it/s, loss=0.957, v_num=wene]
+Validating:  63%|██████▎   | 26/41 [00:35&lt;00:20,  1.36s/it]
+Epoch 2: 100%|█████████▉| 6174/6187 [47:45&lt;00:06,  2.15it/s, loss=0.957, v_num=wene]
+Validating:  68%|██████▊   | 28/41 [00:38&lt;00:17,  1.37s/it]
+Epoch 2: 100%|█████████▉| 6176/6187 [47:48&lt;00:05,  2.15it/s, loss=0.957, v_num=wene]
+Validating:  73%|███████▎  | 30/41 [00:40&lt;00:15,  1.39s/it]
+Epoch 2: 100%|█████████▉| 6178/6187 [47:51&lt;00:04,  2.15it/s, loss=0.957, v_num=wene]
+Validating:  78%|███████▊  | 32/41 [00:43&lt;00:12,  1.38s/it]
+Epoch 2: 100%|█████████▉| 6180/6187 [47:53&lt;00:03,  2.15it/s, loss=0.957, v_num=wene]
+Validating:  83%|████████▎ | 34/41 [00:46&lt;00:09,  1.39s/it]
+Epoch 2: 100%|█████████▉| 6182/6187 [47:56&lt;00:02,  2.15it/s, loss=0.957, v_num=wene]
+Validating:  88%|████████▊ | 36/41 [00:49&lt;00:06,  1.38s/it]
+Epoch 2: 100%|█████████▉| 6184/6187 [47:59&lt;00:01,  2.15it/s, loss=0.957, v_num=wene]
+Validating:  93%|█████████▎| 38/41 [00:51&lt;00:04,  1.34s/it]
+Epoch 2: 100%|█████████▉| 6186/6187 [48:01&lt;00:00,  2.15it/s, loss=0.957, v_num=wene]
+Epoch 2: 100%|██████████| 6187/6187 [48:03&lt;00:00,  2.15it/s, loss=0.957, v_num=wene]
+                                                           
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 2, global step 18437: val_dice_loss reached 0.67237 (best 0.67237), saving model to &quot;gs://ml4cc_data_lake/0_DEV/2_Mart/2_MLModelMart/worldfloods-notebook-training-demo/checkpoint/epoch=2-step=18437.ckpt&quot; as top True
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 3:  99%|█████████▉| 6146/6187 [48:58&lt;00:19,  2.09it/s, loss=0.987, v_num=wene]
+Validating: 0it [00:00, ?it/s]
+Validating:   0%|          | 0/41 [00:00&lt;?, ?it/s]
+Epoch 3:  99%|█████████▉| 6148/6187 [49:02&lt;00:18,  2.09it/s, loss=0.987, v_num=wene]
+Epoch 3:  99%|█████████▉| 6150/6187 [49:02&lt;00:17,  2.09it/s, loss=0.987, v_num=wene]
+Validating:  10%|▉         | 4/41 [00:05&lt;00:43,  1.19s/it]
+Epoch 3:  99%|█████████▉| 6152/6187 [49:05&lt;00:16,  2.09it/s, loss=0.987, v_num=wene]
+Validating:  15%|█▍        | 6/41 [00:08&lt;00:45,  1.29s/it]
+Epoch 3:  99%|█████████▉| 6154/6187 [49:08&lt;00:15,  2.09it/s, loss=0.987, v_num=wene]
+Validating:  20%|█▉        | 8/41 [00:10&lt;00:43,  1.33s/it]
+Epoch 3:  99%|█████████▉| 6156/6187 [49:10&lt;00:14,  2.09it/s, loss=0.987, v_num=wene]
+Validating:  24%|██▍       | 10/41 [00:13&lt;00:41,  1.34s/it]
+Epoch 3: 100%|█████████▉| 6158/6187 [49:13&lt;00:13,  2.08it/s, loss=0.987, v_num=wene]
+Validating:  29%|██▉       | 12/41 [00:16&lt;00:39,  1.36s/it]
+Epoch 3: 100%|█████████▉| 6160/6187 [49:16&lt;00:12,  2.08it/s, loss=0.987, v_num=wene]
+Validating:  34%|███▍      | 14/41 [00:19&lt;00:37,  1.38s/it]
+Epoch 3: 100%|█████████▉| 6162/6187 [49:19&lt;00:12,  2.08it/s, loss=0.987, v_num=wene]
+Validating:  39%|███▉      | 16/41 [00:21&lt;00:33,  1.36s/it]
+Epoch 3: 100%|█████████▉| 6164/6187 [49:21&lt;00:11,  2.08it/s, loss=0.987, v_num=wene]
+Validating:  44%|████▍     | 18/41 [00:24&lt;00:31,  1.37s/it]
+Epoch 3: 100%|█████████▉| 6166/6187 [49:24&lt;00:10,  2.08it/s, loss=0.987, v_num=wene]
+Validating:  49%|████▉     | 20/41 [00:27&lt;00:28,  1.35s/it]
+Epoch 3: 100%|█████████▉| 6168/6187 [49:27&lt;00:09,  2.08it/s, loss=0.987, v_num=wene]
+Validating:  54%|█████▎    | 22/41 [00:29&lt;00:24,  1.29s/it]
+Epoch 3: 100%|█████████▉| 6170/6187 [49:29&lt;00:08,  2.08it/s, loss=0.987, v_num=wene]
+Validating:  59%|█████▊    | 24/41 [00:32&lt;00:22,  1.33s/it]
+Epoch 3: 100%|█████████▉| 6172/6187 [49:32&lt;00:07,  2.08it/s, loss=0.987, v_num=wene]
+Validating:  63%|██████▎   | 26/41 [00:35&lt;00:20,  1.35s/it]
+Epoch 3: 100%|█████████▉| 6174/6187 [49:35&lt;00:06,  2.08it/s, loss=0.987, v_num=wene]
+Validating:  68%|██████▊   | 28/41 [00:38&lt;00:17,  1.38s/it]
+Epoch 3: 100%|█████████▉| 6176/6187 [49:38&lt;00:05,  2.07it/s, loss=0.987, v_num=wene]
+Validating:  73%|███████▎  | 30/41 [00:40&lt;00:15,  1.38s/it]
+Epoch 3: 100%|█████████▉| 6178/6187 [49:40&lt;00:04,  2.07it/s, loss=0.987, v_num=wene]
+Validating:  78%|███████▊  | 32/41 [00:43&lt;00:12,  1.37s/it]
+Epoch 3: 100%|█████████▉| 6180/6187 [49:43&lt;00:03,  2.07it/s, loss=0.987, v_num=wene]
+Validating:  83%|████████▎ | 34/41 [00:46&lt;00:09,  1.37s/it]
+Epoch 3: 100%|█████████▉| 6182/6187 [49:46&lt;00:02,  2.07it/s, loss=0.987, v_num=wene]
+Validating:  88%|████████▊ | 36/41 [00:49&lt;00:06,  1.37s/it]
+Epoch 3: 100%|█████████▉| 6184/6187 [49:48&lt;00:01,  2.07it/s, loss=0.987, v_num=wene]
+Validating:  93%|█████████▎| 38/41 [00:51&lt;00:03,  1.33s/it]
+Epoch 3: 100%|█████████▉| 6186/6187 [49:51&lt;00:00,  2.07it/s, loss=0.987, v_num=wene]
+Epoch 3: 100%|██████████| 6187/6187 [49:52&lt;00:00,  2.07it/s, loss=0.987, v_num=wene]
+                                                           
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 3, global step 24583: val_dice_loss reached 0.66332 (best 0.66332), saving model to &quot;gs://ml4cc_data_lake/0_DEV/2_Mart/2_MLModelMart/worldfloods-notebook-training-demo/checkpoint/epoch=3-step=24583.ckpt&quot; as top True
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 3: 100%|██████████| 6187/6187 [49:54&lt;00:00,  2.07it/s, loss=0.987, v_num=wene]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="step-7-save-trained-model">
+<h2>Step 7: Save trained model<a class="headerlink" href="#step-7-save-trained-model" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- Save model to local/gcs along with configuration file used to conduct training!
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">pytorch_lightning.utilities.cloud_io</span> <span class="kn">import</span> <span class="n">atomic_save</span>
+<span class="kn">from</span> <span class="nn">src.models.config_setup</span> <span class="kn">import</span> <span class="n">save_json</span>
+
+<span class="c1"># Save in the cloud and in the wandb logger save dir</span>
+<span class="n">atomic_save</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">experiment_path</span><span class="si">}</span><span class="s2">/model.pt&quot;</span><span class="p">)</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">wandb_logger</span><span class="o">.</span><span class="n">save_dir</span><span class="p">,</span> <span class="s1">&#39;model.pt&#39;</span><span class="p">))</span>
+<span class="n">wandb</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">wandb_logger</span><span class="o">.</span><span class="n">save_dir</span><span class="p">,</span> <span class="s1">&#39;model.pt&#39;</span><span class="p">))</span>
+<span class="n">wandb</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
+
+<span class="c1"># Save cofig file in experiment_path</span>
+<span class="n">config_file_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">experiment_path</span><span class="si">}</span><span class="s2">/config.json&quot;</span>
+<span class="n">save_json</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">config_file_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Blue">wandb</span>: <span class=" -Color -Color-Yellow">WARNING</span> Saving files without folders. If you want to preserve sub directories pass base_path to wandb.save, i.e. wandb.save(&quot;/mnt/folder/file.h5&quot;, base_path=&quot;/mnt&quot;)
+Run pip install nbformat to save notebook history
+</pre></div>
+</div>
+<div class="output text_html"><br/>Waiting for W&B process to finish, PID 21640<br/>Program ended successfully.</div><div class="output text_html">Find user logs for this run at: <code>/home/gonzalo/ml4floods/notebooks/models/wandb/run-20210318_151018-25j7wene/logs/debug.log</code></div><div class="output text_html">Find internal logs for this run at: <code>/home/gonzalo/ml4floods/notebooks/models/wandb/run-20210318_151018-25j7wene/logs/debug-internal.log</code></div><div class="output text_html"><h3>Run summary:</h3><br/><style>
+    table.wandb td:nth-child(1) { padding: 0 10px; text-align: right }
+    </style><table class="wandb">
+<tr><td>_runtime</td><td>25660</td></tr><tr><td>_timestamp</td><td>1616105878</td></tr><tr><td>_step</td><td>24583</td></tr><tr><td>loss</td><td>0.87475</td></tr><tr><td>epoch</td><td>3</td></tr><tr><td>val_bce_loss</td><td>1.81653</td></tr><tr><td>val_dice_loss</td><td>0.66332</td></tr><tr><td>val_recall land</td><td>0.86352</td></tr><tr><td>val_recall water</td><td>inf</td></tr><tr><td>val_recall cloud</td><td>inf</td></tr><tr><td>val_iou land</td><td>0.78074</td></tr><tr><td>val_iou water</td><td>0.37365</td></tr><tr><td>val_iou cloud</td><td>0.20163</td></tr></table></div><div class="output text_html"><h3>Run history:</h3><br/><style>
+    table.wandb td:nth-child(1) { padding: 0 10px; text-align: right }
+    </style><table class="wandb">
+<tr><td>_runtime</td><td>▁▁▁▁▂▂▂▂▂▃▃▃▃▃▃▄▄▄▄▄▄▅▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇███</td></tr><tr><td>_timestamp</td><td>▁▁▁▁▂▂▂▂▂▃▃▃▃▃▃▄▄▄▄▄▄▅▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇███</td></tr><tr><td>_step</td><td>▁▁▁▁▂▂▂▂▂▃▃▃▃▃▃▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇███</td></tr><tr><td>loss</td><td>█▇▆▆▄▄▆▅▄▃▃▅▃▂▂▃▃▃▃▄▅▇▂▂▃▃▁▄▅▂▁▂▂▂▃▆▂▂▂▂</td></tr><tr><td>epoch</td><td>▁▁▁▁▁▁▁▁▁▁▃▃▃▃▃▃▃▃▃▃▆▆▆▆▆▆▆▆▆▆██████████</td></tr><tr><td>val_bce_loss</td><td>█▄▂▁</td></tr><tr><td>val_dice_loss</td><td>█▄▂▁</td></tr><tr><td>val_recall land</td><td>▁▆██</td></tr><tr><td>val_recall water</td><td></td></tr><tr><td>val_recall cloud</td><td></td></tr><tr><td>val_iou land</td><td>▁▆██</td></tr><tr><td>val_iou water</td><td>▁▅▇█</td></tr><tr><td>val_iou cloud</td><td>▁▅▆█</td></tr></table><br/></div><div class="output text_html">Synced 5 W&B file(s), 1728 media file(s), 0 artifact file(s) and 1 other file(s)</div><div class="output text_html">
+<br/>Synced <strong style="color:#cdcd00">solar-morning-1</strong>: <a href="https://wandb.ai/ipl_uv/ml4floods-notebooks_models/runs/25j7wene" target="_blank">https://wandb.ai/ipl_uv/ml4floods-notebooks_models/runs/25j7wene</a><br/>
+</div></div>
+</div>
+<p>All Done - Now head to the Model Inference Tutorial to see how your model performed!</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-ml4floods-py"
+        },
+        kernelOptions: {
+            kernelName: "conda-env-ml4floods-py",
+            path: "./_buildbak/jupyter_execute/content/ml4ops"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-ml4floods-py'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By spaceml<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../../../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>
